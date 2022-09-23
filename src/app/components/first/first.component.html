@@ -1,0 +1,30 @@
+<div class="container">
+  <form action="" [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()" #formLogin="ngForm" novalidate>
+    
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" formControlName="name">
+    <div *ngIf="loginForm.get('name')?.hasError('minlength') && loginForm.get('name')?.dirty" class="invalid-feedback">Minimo 5 caracteres</div>
+    <div *ngIf="loginForm.get('name')?.hasError('maxlength') && loginForm.get('name')?.dirty" class="invalid-feedback">Maximo 10 caracteres</div>
+    <div class="invalid-feedback" *ngIf="loginForm.get('name')?.invalid && formLogin.submitted">El campo es requerido</div>
+
+    <br>
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" formControlName="email"> 
+    <div class="invalid-feedback" *ngIf="loginForm.get('email')?.invalid && formLogin.submitted">El campo es requerido</div>
+
+    <br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" formControlName="password">
+    <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && formLogin.submitted">El campo es requerido</div>
+     
+    <br>
+    <label for="phone">Telefono</label>
+    <input type="text" id="phone" name="phone" formControlName="phone">
+    <div class="invalid-feedback" *ngIf="loginForm.get('phone')?.hasError('pattern')">Solo puedes ingresar numeros</div>
+    <div class="invalid-feedback" *ngIf="loginForm.get('phone')?.invalid && formLogin.submitted">El campo es requerido</div>
+    
+    <br>
+    <button type="submit" [disabled]="loginForm.invalid && loginForm.dirty">Save</button>
+
+  </form>
+</div>
